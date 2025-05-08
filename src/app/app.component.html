@@ -1,0 +1,46 @@
+<div class="container">
+  <h1>JSON Diff Viewer</h1>
+  <div class="json-inputs side-by-side">
+    <div>
+      <h3>JSON 1</h3>
+      <div class="json-container">
+        <div class="line-numbers">
+          <span *ngFor="let line of json1.split('\n'); let i = index">{{ i + 1 }}</span>
+        </div>
+        <pre
+          class="json-output"
+          contenteditable="true"
+          (input)="onInput($event, 'json1')"
+          [innerHTML]="highlightedJson1 || json1"
+        ></pre>
+      </div>
+    </div>
+    <div>
+      <h3>JSON 2</h3>
+      <div class="json-container">
+        <div class="line-numbers">
+          <span *ngFor="let line of json2.split('\n'); let i = index">{{ i + 1 }}</span>
+        </div>
+        <pre
+          class="json-output"
+          contenteditable="true"
+          (input)="onInput($event, 'json2')"
+          [innerHTML]="highlightedJson2 || json2"
+        ></pre>
+      </div>
+    </div>
+  </div>
+  <button (click)="compareJSON()">Compare</button>
+  <div *ngIf="error" class="error">{{ error }}</div>
+
+  <div class="side-panel">
+    <h3>Differences</h3>
+    <ul>
+      <li *ngFor="let diff of differencesWithLines">
+        Path: {{ diff.path }} |
+        JSON 1 Line: {{ diff.json1Line }} |
+        JSON 2 Line: {{ diff.json2Line }}
+      </li>
+    </ul>
+  </div>
+</div>
