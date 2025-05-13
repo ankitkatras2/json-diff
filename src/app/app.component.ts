@@ -10,8 +10,27 @@ import * as deepDiff from 'deep-diff';
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
-  json1 = '{\n  "name": "Alice",\n  "age": 30,\n  "address": { "city": "New York", "zip": "10001" }\n}';
-  json2 = '{\n  "name": "Alice",\n  "age": 31,\n  "address": { "city": "London", "zip": "SW1A 1AA" },\n  "phone": "123-456-7890"\n}';
+  // json1 = '{\n  "name": "Alice",\n  "age": 30,\n  "address": { "city": "New York", "zip": "10001" }\n}';
+  // json2 = '{\n  "name": "Alice",\n  "age": 31,\n  "address": { "city": "London", "zip": "SW1A 1AA" },\n  "phone": "123-456-7890"\n}';
+  //
+  json1 = `{
+    "name": "Alice",
+    "age": 31,
+    "address": {
+        "city": "London",
+        "zip": "SW1A 1AA"
+    },
+    "phone": "123-456-7890"
+    }`;
+  json2 = `{
+    "name": "Alice",
+    "age": 30,
+    "address": {
+        "city": "New York",
+        "zip": "10001"
+    }
+  }`;
+
   highlightedJson1: SafeHtml | null = null;
   highlightedJson2: SafeHtml | null = null;
   differencesWithLines: { path: string; json1Line: number | string; json2Line: number | string }[] = [];
